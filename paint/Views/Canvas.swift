@@ -11,6 +11,25 @@ import UIKit
 class Canvas: UIView {
     var lines = [[CGPoint]]()
     
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        self.backgroundColor = .white
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    func undo() {
+        _ = lines.popLast()
+        setNeedsDisplay()
+    }
+    
+    func clear() {
+        lines.removeAll()
+        setNeedsDisplay()
+    }
+    
     override func draw(_ rect: CGRect) {
         super.draw(rect)
         
@@ -29,7 +48,6 @@ class Canvas: UIView {
                 }
             }
         }
-        
         context.strokePath()
     }
     
