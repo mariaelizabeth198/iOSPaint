@@ -36,14 +36,57 @@ class ViewController: UIViewController {
         canvas.clear()
     }
     
+    let rSlider: UISlider = {
+        let slider = UISlider(frame: CGRect(x: 20, y: 100, width: 5, height: 1))
+        slider.minimumValue = 0
+        slider.maximumValue = 255
+        slider.value = 0
+        slider.tintColor = .red
+        slider.addTarget(self, action: #selector(updateColor), for: .valueChanged)
+        
+        return slider
+    }()
+    
+    let gSlider: UISlider = {
+        let slider = UISlider(frame: CGRect(x: 20, y: 100, width: 5, height: 1))
+        slider.minimumValue = 0
+        slider.maximumValue = 255
+        slider.value = 0
+        slider.tintColor = .green
+        slider.addTarget(self, action: #selector(updateColor), for: .valueChanged)
+        return slider
+    }()
+    
+    let bSlider: UISlider = {
+        let slider = UISlider(frame: CGRect(x: 20, y: 100, width: 5, height: 1))
+        slider.minimumValue = 0
+        slider.maximumValue = 255
+        slider.value = 0
+        slider.tintColor = .blue
+        slider.addTarget(self, action: #selector(updateColor), for: .valueChanged)
+        return slider
+    }()
+    
+    @objc fileprivate func updateColor() {
+        canvas.changeLineColor(r: CGFloat(rSlider.value), g: CGFloat(gSlider.value), b: CGFloat(bSlider.value))
+    }
+    
     override func loadView() {
         self.view = canvas
     } 
     
     fileprivate func setupLayout() {
+        
+        let rgbStackView = UIStackView(arrangedSubviews: [
+            rSlider, gSlider, bSlider])
+    
+        rgbStackView.distribution = .fillEqually
+        rgbStackView.axis = UILayoutConstraintAxis.vertical
+        
         let stackView = UIStackView(arrangedSubviews: [
             undoButton,
-            clearButton
+            clearButton,
+            rgbStackView
             ])
         
         stackView.distribution = .fillEqually

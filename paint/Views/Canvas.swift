@@ -8,8 +8,10 @@
 
 import UIKit
 
-class Canvas: UIView {
+class Canvas: UIView { 
     var lines = [[CGPoint]]()
+    var lineColor: CGColor = UIColor.black.cgColor
+    let rgbMaximum: CGFloat = 255.0
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -30,12 +32,18 @@ class Canvas: UIView {
         setNeedsDisplay()
     }
     
+    func changeLineColor(r: CGFloat, g: CGFloat , b:CGFloat) {
+        let color = UIColor(red: r/rgbMaximum, green: g/rgbMaximum, blue: b/rgbMaximum, alpha: 1.0)
+        lineColor = color.cgColor
+        setNeedsDisplay()
+    }
+    
     override func draw(_ rect: CGRect) {
         super.draw(rect)
         
         guard let context = UIGraphicsGetCurrentContext() else {return}
         
-        context.setStrokeColor(UIColor.red.cgColor)
+        context.setStrokeColor(lineColor)
         context.setLineWidth(10)
         context.setLineCap(.butt)
         
