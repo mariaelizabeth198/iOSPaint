@@ -15,6 +15,7 @@
 		4ED165182209B877002D8D0D /* paintTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ED165172209B877002D8D0D /* paintTests.swift */; };
 		4ED165232209B877002D8D0D /* paintUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ED165222209B877002D8D0D /* paintUITests.swift */; };
 		4ED165342209EB45002D8D0D /* Canvas.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ED165332209EB45002D8D0D /* Canvas.swift */; };
+		4EDBCB39220B3AE500603938 /* Line.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EDBCB38220B3AE500603938 /* Line.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,7 @@
 		4ED165222209B877002D8D0D /* paintUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = paintUITests.swift; sourceTree = "<group>"; };
 		4ED165242209B877002D8D0D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4ED165332209EB45002D8D0D /* Canvas.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Canvas.swift; sourceTree = "<group>"; };
+		4EDBCB38220B3AE500603938 /* Line.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Line.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +101,7 @@
 		4ED165012209B876002D8D0D /* paint */ = {
 			isa = PBXGroup;
 			children = (
+				4EDBCB37220B3AC400603938 /* Models */,
 				4ED165352209EB8D002D8D0D /* Controler */,
 				4ED165322209EAFB002D8D0D /* Views */,
 				4ED165022209B876002D8D0D /* AppDelegate.swift */,
@@ -142,6 +145,14 @@
 				4ED165042209B876002D8D0D /* ViewController.swift */,
 			);
 			path = Controler;
+			sourceTree = "<group>";
+		};
+		4EDBCB37220B3AC400603938 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				4EDBCB38220B3AE500603938 /* Line.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -276,6 +287,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4ED165052209B876002D8D0D /* ViewController.swift in Sources */,
+				4EDBCB39220B3AE500603938 /* Line.swift in Sources */,
 				4ED165032209B876002D8D0D /* AppDelegate.swift in Sources */,
 				4ED165342209EB45002D8D0D /* Canvas.swift in Sources */,
 			);

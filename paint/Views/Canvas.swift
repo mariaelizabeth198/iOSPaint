@@ -9,8 +9,8 @@
 import UIKit
 
 class Canvas: UIView { 
-    var lines = [[CGPoint]]()
-    var lineColor: CGColor = UIColor.black.cgColor
+    var lines = [Line]()
+    fileprivate var strokeColor: UIColor = UIColor.black
     let rgbMaximum: CGFloat = 255.0
     
     override init(frame: CGRect) {
@@ -32,10 +32,8 @@ class Canvas: UIView {
         setNeedsDisplay()
     }
     
-    func changeLineColor(r: CGFloat, g: CGFloat , b:CGFloat) {
-        let color = UIColor(red: r/rgbMaximum, green: g/rgbMaximum, blue: b/rgbMaximum, alpha: 1.0)
-        lineColor = color.cgColor
-        setNeedsDisplay()
+    func setStrokeColor(r: CGFloat, g: CGFloat , b:CGFloat) {
+        strokeColor = UIColor(red: r/rgbMaximum, green: g/rgbMaximum, blue: b/rgbMaximum, alpha: 1.0)
     }
     
     override func draw(_ rect: CGRect) {
@@ -43,24 +41,24 @@ class Canvas: UIView {
         
         guard let context = UIGraphicsGetCurrentContext() else {return}
         
-        context.setStrokeColor(lineColor)
         context.setLineWidth(10)
         context.setLineCap(.butt)
         
         lines.forEach { (line) in
-            for (index, point) in line.enumerated() {
+            context.setStrokeColor(line.color.cgColor)
+            for(index, point) in line.points.enumerated() {
                 if index == 0 {
                     context.move(to: point)
                 } else {
                     context.addLine(to: point)
                 }
             }
+            context.strokePath()
         }
-        context.strokePath()
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        lines.append([CGPoint]())
+        lines.append(Line.init(color: strokeColor, points: []))
     }
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -68,7 +66,7 @@ class Canvas: UIView {
         guard let point = touches.first?.location(in: nil) else {return}
         
         guard var lastLine = lines.popLast() else {return}
-        lastLine.append(point)
+        lastLine.points.append(point)
         lines.append(lastLine)
         
         setNeedsDisplay()

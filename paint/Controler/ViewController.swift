@@ -42,7 +42,7 @@ class ViewController: UIViewController {
         slider.maximumValue = 255
         slider.value = 0
         slider.tintColor = .red
-        slider.addTarget(self, action: #selector(updateColor), for: .valueChanged)
+        slider.addTarget(self, action: #selector(handleColorChange), for: .valueChanged)
         
         return slider
     }()
@@ -53,7 +53,7 @@ class ViewController: UIViewController {
         slider.maximumValue = 255
         slider.value = 0
         slider.tintColor = .green
-        slider.addTarget(self, action: #selector(updateColor), for: .valueChanged)
+        slider.addTarget(self, action: #selector(handleColorChange), for: .valueChanged)
         return slider
     }()
     
@@ -63,12 +63,12 @@ class ViewController: UIViewController {
         slider.maximumValue = 255
         slider.value = 0
         slider.tintColor = .blue
-        slider.addTarget(self, action: #selector(updateColor), for: .valueChanged)
+        slider.addTarget(self, action: #selector(handleColorChange), for: .valueChanged)
         return slider
     }()
     
-    @objc fileprivate func updateColor() {
-        canvas.changeLineColor(r: CGFloat(rSlider.value), g: CGFloat(gSlider.value), b: CGFloat(bSlider.value))
+    @objc fileprivate func handleColorChange() {
+        canvas.setStrokeColor(r: CGFloat(rSlider.value), g: CGFloat(gSlider.value), b: CGFloat(bSlider.value))
     }
     
     override func loadView() {
