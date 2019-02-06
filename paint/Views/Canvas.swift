@@ -9,9 +9,9 @@
 import UIKit
 
 class Canvas: UIView { 
-    var lines = [Line]()
-    fileprivate var strokeColor: UIColor = UIColor.black
-    let rgbMaximum: CGFloat = 255.0
+    private var lines = [Line]()
+    private var strokeColor: UIColor = UIColor.black
+    private let rgbMaximum: CGFloat = 255.0
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -62,7 +62,6 @@ class Canvas: UIView {
     }
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
-        
         guard let point = touches.first?.location(in: nil) else {return}
         
         guard var lastLine = lines.popLast() else {return}
