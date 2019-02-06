@@ -11,33 +11,49 @@ import UIKit
 class ViewController: UIViewController {
     private let canvas = Canvas()
     
-    @objc fileprivate func handleUndo() {
+    @objc private func handleUndo() {
         canvas.undo()
     }
     
-    @objc fileprivate func handleClear() {
+    @objc private func handleClear() {
         canvas.clear()
     }
     
-    @objc fileprivate func handleColorChange() {
+    @objc private func handleColorChange() {
         canvas.setStrokeColor(r: CGFloat(rSlider.value), g: CGFloat(gSlider.value), b: CGFloat(bSlider.value))
+    }
+    
+    @objc private func handleStrokeWidthChange() {
+        canvas.setStrokeWidth(width: strokeWidhtSlider.value)
     }
     
     private func getConfiguredButton(title: String, fontSize: Float, action: Selector) -> UIButton {
         let button = UIButton(type: .system)
         button.setTitle(title, for: .normal)
         button.titleLabel?.font = .boldSystemFont(ofSize: CGFloat(fontSize))
+        button.showsTouchWhenHighlighted = true
         button.addTarget(self, action: action, for: .touchUpInside)
         return button
     }
     
     private func getConfiguredRGBSlider(tintColor: UIColor) -> UISlider {
-        let slider = UISlider(frame: CGRect(x: 20, y: 100, width: 5, height: 1))
+        let slider = UISlider(frame: CGRect(x: 5, y: 5, width: 5, height: 1))
         slider.minimumValue = 0
         slider.maximumValue = 255
         slider.value = 0
         slider.tintColor = tintColor
         slider.addTarget(self, action: #selector(handleColorChange), for: .valueChanged)
+        return slider
+    }
+    
+    private func getConfiguredStrokeWidhtSlider() -> UISlider{
+        let slider = UISlider(frame: CGRect(x: 5, y: 5, width: 5, height: 1))
+        slider.minimumValue = 0
+        slider.maximumValue = 100
+        slider.value = 1
+        slider.tintColor = .black
+        slider.addTarget(self, action: #selector(handleStrokeWidthChange), for: .valueChanged)
+        
         return slider
     }
     
@@ -61,6 +77,10 @@ class ViewController: UIViewController {
         return getConfiguredRGBSlider(tintColor: .blue)
     }()
     
+    lazy var strokeWidhtSlider: UISlider = {
+        return getConfiguredStrokeWidhtSlider()
+    }()
+    
     override func loadView() {
         self.view = canvas
     } 
@@ -74,15 +94,19 @@ class ViewController: UIViewController {
     
     private func setupLayout() {
         let rgbStackView = UIStackView(arrangedSubviews: [
-            rSlider, gSlider, bSlider])
+            rSlider,
+            gSlider,
+            bSlider,
+            strokeWidhtSlider
+            ])
     
         rgbStackView.distribution = .fillEqually
         rgbStackView.axis = UILayoutConstraintAxis.vertical
         
         let stackView = UIStackView(arrangedSubviews: [
+            rgbStackView,
             undoButton,
-            clearButton,
-            rgbStackView
+            clearButton
             ])
         
         stackView.distribution = .fillEqually

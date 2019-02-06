@@ -11,6 +11,7 @@ import UIKit
 class Canvas: UIView { 
     private var lines = [Line]()
     private var strokeColor: UIColor = UIColor.black
+    private var strokeWidth: Float = 1.0
     private let rgbMaximum: CGFloat = 255.0
     
     override init(frame: CGRect) {
@@ -36,16 +37,20 @@ class Canvas: UIView {
         strokeColor = UIColor(red: r/rgbMaximum, green: g/rgbMaximum, blue: b/rgbMaximum, alpha: 1.0)
     }
     
+    func setStrokeWidth(width: Float) {
+        strokeWidth = width
+    }
+    
     override func draw(_ rect: CGRect) {
         super.draw(rect)
         
         guard let context = UIGraphicsGetCurrentContext() else {return}
         
-        context.setLineWidth(10)
         context.setLineCap(.butt)
         
         lines.forEach { (line) in
             context.setStrokeColor(line.color.cgColor)
+            context.setLineWidth(CGFloat(line.strokeWidth))
             for(index, point) in line.points.enumerated() {
                 if index == 0 {
                     context.move(to: point)
@@ -58,7 +63,7 @@ class Canvas: UIView {
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        lines.append(Line.init(color: strokeColor, points: []))
+        lines.append(Line.init(strokeWidth: strokeWidth, color: strokeColor, points: []))
     }
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
