@@ -9,10 +9,10 @@
 import UIKit
 
 class Canvas: UIView { 
-    private var lines = [Line]()
-    private var strokeColor: UIColor = UIColor.black
-    private var strokeWidth: Float = 1.0
-    private let rgbMaximum: CGFloat = 255.0
+    var lines = [Line]()
+    var strokeColor: UIColor = UIColor.black
+    var strokeWidth: Float = 1.0
+    let rgbMaximum: CGFloat = 255.0
     
     override init(frame: CGRect) {
         super.init(frame: frame)
