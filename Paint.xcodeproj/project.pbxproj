@@ -98,7 +98,7 @@
 		4ED164F62209B876002D8D0D = {
 			isa = PBXGroup;
 			children = (
-				4ED165012209B876002D8D0D /* paint */,
+				4ED165012209B876002D8D0D /* Paint */,
 				4ED165162209B877002D8D0D /* paintTests */,
 				4ED165212209B877002D8D0D /* paintUITests */,
 				4ED165002209B876002D8D0D /* Products */,
@@ -117,7 +117,7 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		4ED165012209B876002D8D0D /* paint */ = {
+		4ED165012209B876002D8D0D /* Paint */ = {
 			isa = PBXGroup;
 			children = (
 				4EDBCB37220B3AC400603938 /* Models */,
@@ -129,7 +129,7 @@
 				4ED1650B2209B877002D8D0D /* LaunchScreen.storyboard */,
 				4ED1650E2209B877002D8D0D /* Info.plist */,
 			);
-			path = paint;
+			path = Paint;
 			sourceTree = "<group>";
 		};
 		4ED165162209B877002D8D0D /* paintTests */ = {
@@ -281,7 +281,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 4ED164FA2209B876002D8D0D /* Build configuration list for PBXProject "paint" */;
+			buildConfigurationList = 4ED164FA2209B876002D8D0D /* Build configuration list for PBXProject "Paint" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -636,7 +636,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/paint.app/paint";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Paint.temp_caseinsensitive_rename.app/Paint.temp_caseinsensitive_rename";
 			};
 			name = Debug;
 		};
@@ -657,7 +657,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/paint.app/paint";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Paint.temp_caseinsensitive_rename.app/Paint.temp_caseinsensitive_rename";
 			};
 			name = Release;
 		};
@@ -704,7 +704,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		4ED164FA2209B876002D8D0D /* Build configuration list for PBXProject "paint" */ = {
+		4ED164FA2209B876002D8D0D /* Build configuration list for PBXProject "Paint" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				4ED165252209B877002D8D0D /* Debug */,
